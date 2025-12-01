@@ -85,6 +85,104 @@
             position: relative;
             z-index: 1;
         }
+
+        /* ========================================
+           NOVO: TOP URGENCY SECTION (King Kong Style)
+           ======================================== */
+        .top-urgency-section {
+            background: linear-gradient(135deg, #0d0d0d 0%, #151515 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top-urgency-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--danger), var(--warning), var(--danger));
+            animation: gradientMove 3s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .urgency-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .current-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .king-kong-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(20px, 4vw, 28px);
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .king-kong-headline span {
+            color: var(--accent);
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .countdown-item {
+            background: rgba(255, 68, 68, 0.15);
+            border: 1px solid rgba(255, 68, 68, 0.3);
+            border-radius: 10px;
+            padding: 12px 18px;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--danger);
+            line-height: 1;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 480px) {
+            .countdown-item {
+                padding: 10px 12px;
+                min-width: 60px;
+            }
+            .countdown-number {
+                font-size: 22px;
+            }
+        }
         
         /* Exit Intent Popup */
         .exit-popup {
@@ -270,6 +368,104 @@
         .subtitle strong {
             color: var(--text);
         }
+
+        /* ========================================
+           NOVO: MOCKUP DO LIVRO
+           ======================================== */
+        .book-mockup-section {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .book-mockup-container {
+            position: relative;
+            display: inline-block;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .book-mockup-image {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 50px rgba(0, 255, 136, 0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .book-mockup-container:hover .book-mockup-image {
+            transform: scale(1.02) translateY(-5px);
+        }
+
+        .book-mockup-badge {
+            position: absolute;
+            top: 20px;
+            right: -10px;
+            background: var(--danger);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            transform: rotate(5deg);
+            box-shadow: 0 5px 20px rgba(255, 68, 68, 0.4);
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: rotate(5deg) scale(1); }
+            50% { transform: rotate(5deg) scale(1.05); }
+        }
+
+        /* ========================================
+           NOVO: PREÇO COM STRIKETHROUGH
+           ======================================== */
+        .price-section {
+            background: var(--card-bg);
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .price-original {
+            font-size: 24px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-bottom: 5px;
+        }
+
+        .price-current {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .price-savings {
+            display: inline-block;
+            background: rgba(255, 68, 68, 0.2);
+            color: var(--danger);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
         
         /* Stats Section */
         .stats {
@@ -316,14 +512,6 @@
             margin-top: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-        
-        .stat-equals {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--accent);
         }
         
         /* Problem Section */
@@ -573,7 +761,9 @@
             margin-top: 8px;
         }
         
-        /* Author Section */
+        /* ========================================
+           ATUALIZADO: AUTHOR SECTION COM FOTO
+           ======================================== */
         .author-section {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -582,28 +772,66 @@
             margin: 50px 0;
             display: flex;
             gap: 30px;
-            align-items: center;
+            align-items: flex-start;
         }
         
         @media (max-width: 600px) {
             .author-section {
                 flex-direction: column;
                 text-align: center;
+                align-items: center;
             }
         }
         
         .author-avatar {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+            width: 140px;
+            height: 140px;
             border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            font-weight: 700;
-            color: var(--primary);
+            overflow: hidden;
             flex-shrink: 0;
+            border: 3px solid var(--accent);
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-social-proof {
+            margin-top: 20px;
+        }
+
+        .author-social-proof img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+
+        .author-social-proof img:hover {
+            opacity: 1;
+        }
+        
+        .author-social-proof {
+            margin-top: 20px;
+        }
+
+        .author-social-proof img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            opacity: 0.95;
+            transition: all 0.3s;
+        }
+
+        .author-social-proof img:hover {
+            opacity: 1;
+            border-color: var(--accent);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.15);
         }
         
         .author-info h3 {
@@ -841,17 +1069,42 @@
             max-height: 200px;
         }
         
-        /* Footer */
+        /* ========================================
+           ATUALIZADO: FOOTER COM LOGO DBTX
+           ======================================== */
         .footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 50px 20px;
             border-top: 1px solid var(--border);
             margin-top: 60px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+            opacity: 0.9;
         }
         
         .footer p {
             color: var(--text-muted);
             font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .footer-powered {
+            font-size: 12px;
+            color: var(--text-muted);
+            opacity: 0.7;
+            margin-top: 15px;
+        }
+
+        .footer-powered a {
+            color: var(--accent);
+            text-decoration: none;
         }
         
         .footer a {
@@ -859,7 +1112,9 @@
             text-decoration: none;
         }
         
-        /* Social Proof Notification */
+        /* ========================================
+           ATUALIZADO: SOCIAL PROOF NOTIFICATION
+           ======================================== */
         .social-proof {
             position: fixed;
             bottom: 20px;
@@ -871,7 +1126,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            max-width: 320px;
+            max-width: 350px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             transform: translateX(-150%);
             transition: transform 0.5s ease;
@@ -893,6 +1148,7 @@
             font-weight: 700;
             color: var(--primary);
             flex-shrink: 0;
+            font-size: 16px;
         }
         
         .social-proof-content {
@@ -901,11 +1157,18 @@
         
         .social-proof-content strong {
             display: block;
+            color: var(--text);
         }
         
         .social-proof-content span {
+            color: var(--accent);
+            font-size: 13px;
+        }
+
+        .social-proof-time {
+            font-size: 11px;
             color: var(--text-muted);
-            font-size: 12px;
+            margin-top: 2px;
         }
         
         .social-proof-close {
@@ -1015,6 +1278,32 @@
     <!-- Background Effects -->
     <div class="bg-grid"></div>
     <div class="bg-glow"></div>
+
+    <!-- ========================================
+         NOVO: TOP URGENCY SECTION
+         ======================================== -->
+    <section class="top-urgency-section">
+        <div class="urgency-wrapper">
+            <p class="current-date" id="currentDate"></p>
+            <h2 class="king-kong-headline">
+                ⚡ Última Chance: Guia <span>100% Gratuito</span> Por Tempo Limitado
+            </h2>
+            <div class="countdown-container">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">23</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">59</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">59</span>
+                    <span class="countdown-label">Segundos</span>
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- Sticky Header -->
     <div class="sticky-header" id="stickyHeader">
@@ -1027,10 +1316,11 @@
     <!-- Social Proof Notification -->
     <div class="social-proof" id="socialProof">
         <button class="social-proof-close" onclick="closeSocialProof()">×</button>
-        <div class="social-proof-avatar" id="proofAvatar">M</div>
+        <div class="social-proof-avatar" id="proofAvatar">J</div>
         <div class="social-proof-content">
-            <strong id="proofName">Marcos R.</strong>
-            <span id="proofText">baixou o guia agora mesmo</span>
+            <strong id="proofName">João de São Paulo</strong>
+            <span id="proofText">acabou de baixar este guia</span>
+            <div class="social-proof-time" id="proofTime">há 2 minutos</div>
         </div>
     </div>
     
@@ -1066,6 +1356,25 @@
             <p class="subtitle">
                 Enquanto todo mundo corre atrás de seguidores vazios, descubra o framework que <strong>empreendedores silenciosos</strong> usam para faturar alto com audiências pequenas.
             </p>
+
+            <!-- ========================================
+                 NOVO: MOCKUP DO LIVRO
+                 ======================================== -->
+            <div class="book-mockup-section">
+                <div class="book-mockup-container">
+                    <img src="https://images.groovetech.io/JwI5WH42Z6GzzyYlSJj233zla4lJE-wnwJjHekdWd2I/rs:fit:0:0:0/g:no:0:0/c:0:0/aHR0cHM6Ly9hc3NldHMuZ3Jvb3ZlYXBwcy5jb20vaW1hZ2VzLzVlYmFjMjNkNzNlZjNlMTk2ZTk3Y2E5Mi8xNzY0NjE3NDA0X2ltYWdldjIxLnBuZw.webp" alt="Guia 1000 Fãs Verdadeiros - Rodrigo Teixeira" class="book-mockup-image">
+                    <div class="book-mockup-badge">GRÁTIS!</div>
+                </div>
+            </div>
+
+            <!-- ========================================
+                 NOVO: PREÇO COM STRIKETHROUGH
+                 ======================================== -->
+            <div class="price-section">
+                <div class="price-original">De R$ 97,00</div>
+                <div class="price-current">GRÁTIS</div>
+                <div class="price-savings">Você economiza R$ 97,00</div>
+            </div>
             
             <a href="#form" class="submit-btn" style="display: inline-flex; text-decoration: none; max-width: 350px; margin: 0 auto;">
                 Baixar Guia Gratuito <span class="arrow">→</span>
@@ -1220,14 +1529,20 @@
             </div>
         </section>
         
-        <!-- Author Section -->
+        <!-- ========================================
+             ATUALIZADO: AUTHOR SECTION COM FOTO
+             ======================================== -->
         <section class="author-section animate-on-scroll">
-            <div class="author-avatar">RT</div>
+            <div>
+                <div class="author-avatar">
+                    <img src="https://images.groovetech.io/iUAgQ3PqghOHVgpDxmfaSjj0naa5ddF9kWFPwu_jLlI/rs:fit:0:0:0/g:no:0:0/c:0:0/aHR0cHM6Ly9hc3NldHMuZ3Jvb3ZlYXBwcy5jb20vaW1hZ2VzLzVlYmFjMjNkNzNlZjNlMTk2ZTk3Y2E5Mi8xNzU4ODk3ODIwX2E4ZTAzMWU2Nzc3MjQ5NTRhY2UyZjdmNDA1OTc0ZTE5LkpQRw.webp" alt="Rodrigo Teixeira">
+                </div>
+            </div>
             <div class="author-info">
                 <h3>Rodrigo Teixeira</h3>
-                <p class="author-title">CEO Lucro Disruptivo | Fundador Mente de Gringo™</p>
+                <p class="author-title">CEO Grupo DBTX | Fundador Mente de Gringo™</p>
                 <p class="author-bio">
-                    15+ anos aplicando metodologias americanas de marketing no Brasil. Trabalhou com Six Pack Shortcuts gerando R$ 1MM/mês aos 22 anos. Parceiro de Russell Brunson e Mike Filsaime.
+                    15+ anos aplicando metodologias americanas de marketing no Brasil. Trabalhou com Six Pack Shortcuts gerando R$ 1MM/mês aos 22 anos. Parceiro de Russell Brunson e Mike Filsaime. Já compartilhou palco com nomes como Alex Hormozi, Rich Schefren e Jay Abraham.
                 </p>
                 <div class="author-credentials">
                     <div class="credential">
@@ -1242,6 +1557,9 @@
                         <span class="icon">✓</span>
                         <span>Metodologia americana</span>
                     </div>
+                </div>
+                <div class="author-social-proof">
+                    <img src="https://images.groovetech.io/iLEkz6ZnlHzAWeOelwFrhgIV2vNKGTouaEhF-vSt5IY/rs:fit:0:0:0/g:no:0:0/c:0:0/aHR0cHM6Ly9hc3NldHMuZ3Jvb3ZlYXBwcy5jb20vaW1hZ2VzLzVlYmFjMjNkNzNlZjNlMTk2ZTk3Y2E5Mi8xNzU3NTM2NzI3X0x1Y3JvRGlzcnVwdGl2b1NvY2lhbFByb29mR3JhbmRlc05vbWVzLnBuZw.webp" alt="Rodrigo Teixeira com grandes nomes do marketing digital">
                 </div>
             </div>
         </section>
@@ -1298,68 +1616,70 @@
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        Sim, 100% gratuito. Sem pegadinhas, sem cartão de crédito, sem trial. É um material completo que criei para mostrar o poder dessa estratégia.
+                        Sim, 100% gratuito. Sem pegadinhas, sem cartão de crédito, sem compromisso. Você baixa, aplica e vê os resultados.
                     </div>
                 </div>
             </div>
             
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Funciona para qualquer nicho?</span>
+                    <span>Preciso de muitos seguidores para aplicar?</span>
                     <span class="icon">+</span>
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        O conceito de Fãs Verdadeiros funciona para qualquer pessoa que vende conhecimento, serviços ou produtos. Consultores, mentores, coaches, infoprodutores, prestadores de serviço, etc.
+                        Não! Esse é justamente o ponto. O framework funciona com audiências pequenas. Se você tem 100, 500 ou 1.000 seguidores engajados, já pode aplicar.
                     </div>
                 </div>
             </div>
             
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Preciso ter muitos seguidores?</span>
+                    <span>Serve para qualquer nicho?</span>
                     <span class="icon">+</span>
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        Não! Esse é justamente o ponto. O guia mostra como faturar alto com audiências pequenas. Você pode começar do zero ou com a audiência que já tem.
+                        Sim. O conceito de Fãs Verdadeiros é universal. Funciona para coaches, consultores, criadores de conteúdo, infoprodutores, prestadores de serviço e negócios locais.
                     </div>
                 </div>
             </div>
             
             <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>Como recebo o material?</span>
+                    <span>Por que está dando isso de graça?</span>
                     <span class="icon">+</span>
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        Imediatamente após o cadastro, você recebe o PDF completo no email informado. Se não chegar em 5 minutos, verifique sua caixa de spam.
+                        Porque quero que você conheça minha metodologia. Quando você aplicar e ver resultados, vai querer ir mais fundo. Simples assim.
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Footer -->
+        <!-- ========================================
+             ATUALIZADO: FOOTER COM LOGO DBTX
+             ======================================== -->
         <footer class="footer">
-            <p>© 2025 Lucro Disruptivo. Todos os direitos reservados.</p>
-            <p style="margin-top: 10px;">
-                <a href="#">Política de Privacidade</a> • <a href="#">Termos de Uso</a>
-            </p>
+            <div class="footer-logo">
+                <img src="https://images.groovetech.io/DcUv1P2wkSuxmGhBa_q5H0XXbpdLieFmTMM5Xogp3l8/rs:fit:0:0:0/g:no:0:0/c:0:0/aHR0cHM6Ly9pbWFnZXMuZ3Jvb3ZldGVjaC5pby9lWDhWVGpxOHJNWDhUcERKM3IwWnZCZUNMZXV0dlFxbGNvMl9fb0FqSTRJL3JzOmZpdDowOjA6MC9nOm5vOjA6MC9jOjA6MC9hSFIwY0hNNkx5OWhjM05sZEhNdVozSnZiM1psWVhCd2N5NWpiMjB2YVcxaFoyVnpMelZsWW1Gak1qTmtOek5sWmpObE1UazJaVGszWTJFNU1pOHhOelkwTmpFMU16UXpYMGR5ZFhCdlJFSlVXRXh2WjI4dWNHNW4ud2VicA.webp" alt="Grupo DBTX">
+            </div>
+            <p>© 2025 Grupo DBTX. Todos os direitos reservados.</p>
+            <p class="footer-powered">Powered by <a href="#">apxlbs AI</a></p>
         </footer>
     </div>
     
     <script>
         // ========================================
-        // CONFIGURAÇÃO - Altere conforme necessário
+        // CONFIGURAÇÕES
         // ========================================
         const CONFIG = {
             // URL do Google Apps Script (Web App)
-            // Cole aqui a URL gerada ao fazer deploy do Apps Script
             googleScriptUrl: 'https://script.google.com/macros/s/AKfycbzH-vtATrOsna-wfKzKU_3Zo29q9xtFyhIvmGaObVxkh_eDvIKcwnV43KElJF5-1ZEIEA/exec',
             
-            // URL de redirecionamento após cadastro (opcional)
-            redirectUrl: 'https://docs.google.com/document/d/1xADkkcZS08-hJYVtSQok34iE0cwvJGGD_OOhhpmTF04/edit?usp=sharing', // Ex: 'https://seusite.com/obrigado'
+            // URL de redirecionamento após cadastro
+            redirectUrl: 'https://docs.google.com/document/d/1xADkkcZS08-hJYVtSQok34iE0cwvJGGD_OOhhpmTF04/edit?usp=sharing',
             
             // Habilitar/desabilitar features
             enableExitPopup: true,
@@ -1370,25 +1690,84 @@
             socialProofDelay: 8000,
             socialProofInterval: 25000
         };
+
+        // ========================================
+        // NOVO: DATA ATUAL NO TOPO
+        // ========================================
+        function updateCurrentDate() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateStr = now.toLocaleDateString('pt-BR', options);
+            document.getElementById('currentDate').textContent = dateStr.toUpperCase();
+        }
+        updateCurrentDate();
+
+        // ========================================
+        // NOVO: COUNTDOWN TIMER
+        // ========================================
+        function updateCountdown() {
+            const now = new Date();
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+            
+            const diff = endOfDay - now;
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
         
         // ========================================
-        // SOCIAL PROOF DATA
+        // ATUALIZADO: SOCIAL PROOF DATA (Nomes brasileiros realistas)
         // ========================================
         const socialProofData = [
-            { name: 'Marcos R.', city: 'São Paulo', action: 'baixou o guia agora' },
-            { name: 'Ana C.', city: 'Rio de Janeiro', action: 'acabou de se cadastrar' },
-            { name: 'Felipe S.', city: 'Belo Horizonte', action: 'baixou o guia há 2 min' },
-            { name: 'Juliana M.', city: 'Curitiba', action: 'se cadastrou agora' },
-            { name: 'Ricardo L.', city: 'Porto Alegre', action: 'baixou o guia há 5 min' },
-            { name: 'Camila P.', city: 'Brasília', action: 'acabou de baixar' },
-            { name: 'Bruno A.', city: 'Salvador', action: 'se cadastrou há 3 min' },
-            { name: 'Fernanda T.', city: 'Fortaleza', action: 'baixou agora mesmo' }
+            { name: 'João', city: 'São Paulo' },
+            { name: 'Maria', city: 'Rio de Janeiro' },
+            { name: 'Pedro', city: 'Belo Horizonte' },
+            { name: 'Ana', city: 'Curitiba' },
+            { name: 'Carlos', city: 'Porto Alegre' },
+            { name: 'Fernanda', city: 'Salvador' },
+            { name: 'Lucas', city: 'Fortaleza' },
+            { name: 'Juliana', city: 'Brasília' },
+            { name: 'Rafael', city: 'Recife' },
+            { name: 'Camila', city: 'Campinas' },
+            { name: 'Thiago', city: 'Florianópolis' },
+            { name: 'Beatriz', city: 'Goiânia' },
+            { name: 'Gabriel', city: 'Manaus' },
+            { name: 'Larissa', city: 'Vitória' },
+            { name: 'Rodrigo', city: 'Natal' },
+            { name: 'Patrícia', city: 'João Pessoa' },
+            { name: 'Bruno', city: 'Ribeirão Preto' },
+            { name: 'Amanda', city: 'Santos' },
+            { name: 'Felipe', city: 'Londrina' },
+            { name: 'Mariana', city: 'Joinville' },
+            { name: 'Diego', city: 'Uberlândia' },
+            { name: 'Renata', city: 'Sorocaba' },
+            { name: 'Gustavo', city: 'Aracaju' },
+            { name: 'Carolina', city: 'Maceió' }
+        ];
+
+        const timeAgoOptions = [
+            'agora mesmo',
+            'há 1 minuto',
+            'há 2 minutos',
+            'há 3 minutos',
+            'há 5 minutos',
+            'há 8 minutos',
+            'há 12 minutos'
         ];
         
         // ========================================
-        // UTM & TRACKING
+        // UTM TRACKING
         // ========================================
-        function getUTMParams() {
+        function getUtmParams() {
             const params = new URLSearchParams(window.location.search);
             return {
                 utm_source: params.get('utm_source') || '',
@@ -1401,52 +1780,53 @@
             };
         }
         
+        const utmParams = getUtmParams();
+        
+        // ========================================
+        // FINGERPRINT
+        // ========================================
         function generateFingerprint() {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             ctx.textBaseline = 'top';
             ctx.font = '14px Arial';
             ctx.fillText('fingerprint', 2, 2);
-            const canvasData = canvas.toDataURL();
             
-            const data = [
+            const fingerprint = [
                 navigator.userAgent,
                 navigator.language,
                 screen.width + 'x' + screen.height,
                 new Date().getTimezoneOffset(),
-                canvasData.slice(-50)
+                canvas.toDataURL()
             ].join('|');
             
             let hash = 0;
-            for (let i = 0; i < data.length; i++) {
-                const char = data.charCodeAt(i);
+            for (let i = 0; i < fingerprint.length; i++) {
+                const char = fingerprint.charCodeAt(i);
                 hash = ((hash << 5) - hash) + char;
                 hash = hash & hash;
             }
-            return Math.abs(hash).toString(36);
+            
+            return Math.abs(hash).toString(16);
         }
         
+        const visitorFingerprint = generateFingerprint();
+        
         // ========================================
-        // FORM HANDLING - GOOGLE SHEETS
+        // FORM SUBMISSION
         // ========================================
         document.getElementById('leadForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-            
-            const utmParams = getUTMParams();
             
             const formData = {
-                name: document.getElementById('name').value.trim(),
-                email: document.getElementById('email').value.trim().toLowerCase(),
-                whatsapp: document.getElementById('whatsapp').value.trim() || '',
-                fingerprint: generateFingerprint(),
                 timestamp: new Date().toISOString(),
-                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                userAgent: navigator.userAgent,
-                screenResolution: screen.width + 'x' + screen.height,
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                whatsapp: document.getElementById('whatsapp').value || '',
+                fingerprint: visitorFingerprint,
                 utm_source: utmParams.utm_source,
                 utm_medium: utmParams.utm_medium,
                 utm_campaign: utmParams.utm_campaign,
@@ -1457,16 +1837,12 @@
                 lead_magnet: '1000_fas_verdadeiros'
             };
             
-            // Salvar no localStorage para tracking
             localStorage.setItem('lead_data', JSON.stringify(formData));
             localStorage.setItem('lead_email', formData.email);
             localStorage.setItem('lead_name', formData.name);
             
             try {
-                // Enviar para Google Sheets via Apps Script
                 if (CONFIG.googleScriptUrl && !CONFIG.googleScriptUrl.includes('COLE_SUA_URL')) {
-                    
-                    // Método 1: fetch com no-cors (mais confiável)
                     await fetch(CONFIG.googleScriptUrl, {
                         method: 'POST',
                         mode: 'no-cors',
@@ -1475,16 +1851,13 @@
                         },
                         body: JSON.stringify(formData)
                     });
-                    
                 } else {
                     console.warn('URL do Google Apps Script não configurada');
                 }
                 
-                // Mostrar sucesso
                 document.getElementById('leadForm').style.display = 'none';
                 document.getElementById('formSuccess').classList.add('visible');
                 
-                // Disparar evento de conversão (para pixels/analytics)
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'generate_lead', {
                         'event_category': 'Lead',
@@ -1498,7 +1871,6 @@
                     });
                 }
                 
-                // Redirecionar com countdown
                 if (CONFIG.redirectUrl) {
                     let seconds = 3;
                     const countdownEl = document.getElementById('countdown');
@@ -1516,7 +1888,6 @@
                 
             } catch (error) {
                 console.error('Erro ao enviar lead:', error);
-                // Ainda mostra sucesso para UX (dados estão no localStorage)
                 document.getElementById('leadForm').style.display = 'none';
                 document.getElementById('formSuccess').classList.add('visible');
             }
@@ -1529,7 +1900,6 @@
         // ========================================
         if (CONFIG.enableStickyHeader) {
             const stickyHeader = document.getElementById('stickyHeader');
-            let lastScroll = 0;
             
             window.addEventListener('scroll', () => {
                 const currentScroll = window.pageYOffset;
@@ -1539,13 +1909,11 @@
                 } else {
                     stickyHeader.classList.remove('visible');
                 }
-                
-                lastScroll = currentScroll;
             });
         }
         
         // ========================================
-        // SOCIAL PROOF NOTIFICATIONS
+        // ATUALIZADO: SOCIAL PROOF NOTIFICATIONS (Mais realista)
         // ========================================
         let socialProofIndex = 0;
         let socialProofClosed = false;
@@ -1553,23 +1921,30 @@
         function showSocialProof() {
             if (!CONFIG.enableSocialProof || socialProofClosed) return;
             
-            const proof = socialProofData[socialProofIndex];
+            // Seleciona pessoa aleatória
+            const randomIndex = Math.floor(Math.random() * socialProofData.length);
+            const proof = socialProofData[randomIndex];
+            
+            // Seleciona tempo aleatório
+            const randomTimeIndex = Math.floor(Math.random() * timeAgoOptions.length);
+            const timeAgo = timeAgoOptions[randomTimeIndex];
+            
             const element = document.getElementById('socialProof');
             const avatar = document.getElementById('proofAvatar');
             const name = document.getElementById('proofName');
             const text = document.getElementById('proofText');
+            const time = document.getElementById('proofTime');
             
             avatar.textContent = proof.name.charAt(0);
             name.textContent = proof.name + ' de ' + proof.city;
-            text.textContent = proof.action;
+            text.textContent = 'acabou de baixar este guia';
+            time.textContent = timeAgo;
             
             element.classList.add('visible');
             
             setTimeout(() => {
                 element.classList.remove('visible');
-            }, 5000);
-            
-            socialProofIndex = (socialProofIndex + 1) % socialProofData.length;
+            }, 6000);
         }
         
         function closeSocialProof() {
@@ -1600,7 +1975,6 @@
             document.getElementById('exitPopup').classList.remove('active');
         }
         
-        // Fechar popup com ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeExitPopup();
@@ -1614,10 +1988,8 @@
             const item = element.parentElement;
             const isActive = item.classList.contains('active');
             
-            // Fechar todos
             document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
             
-            // Abrir o clicado (se não estava ativo)
             if (!isActive) {
                 item.classList.add('active');
             }
@@ -1644,17 +2016,15 @@
         });
         
         // ========================================
-        // DOWNLOAD COUNTER (Fake but realistic)
+        // DOWNLOAD COUNTER
         // ========================================
         function updateDownloadCount() {
-            const baseCount = 1247;
-            const randomAdd = Math.floor(Math.random() * 5);
             const element = document.getElementById('downloadCount');
             const currentCount = parseInt(element.textContent.replace('.', ''));
+            const randomAdd = Math.floor(Math.random() * 3) + 1;
             element.textContent = (currentCount + randomAdd).toLocaleString('pt-BR');
         }
         
-        // Atualizar contador a cada 30 segundos
         setInterval(updateDownloadCount, 30000);
         
         // ========================================
