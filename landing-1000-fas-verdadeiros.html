@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Os 1.000 Fãs Verdadeiros - Guia Gratuito | Rodrigo Teixeira</title>
+    <meta name="description" content="Descubra como construir um negócio de R$ 1 Milhão/ano sem precisar de milhões de seguidores. Guia gratuito com framework completo.">
+    
+    <!-- Preload Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --accent: #00ff88;
+            --accent-dim: #00cc6a;
+            --accent-glow: rgba(0, 255, 136, 0.3);
+            --text: #ffffff;
+            --text-muted: #a0a0a0;
+            --danger: #ff4444;
+            --warning: #ffaa00;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .bg-glow {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 255, 136, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(0, 200, 100, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+            animation: bgFloat 20s ease-in-out infinite;
+        }
+        
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-2%, -2%); }
+        }
+        
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Exit Intent Popup */
+        .exit-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .exit-popup.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .exit-popup-content {
+            background: var(--secondary);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 0 60px var(--accent-glow);
+        }
+        
+        .exit-popup-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .exit-popup-close:hover {
+            color: var(--text);
+        }
+        
+        .exit-popup h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        
+        .exit-popup p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+        
+        /* Sticky Header */
+        .sticky-header {
+            position: fixed;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            z-index: 1000;
+            transition: top 0.3s ease;
+        }
+        
+        .sticky-header.visible {
+            top: 0;
+        }
+        
+        .sticky-header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .sticky-header-text {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .sticky-cta {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .sticky-cta:hover {
+            background: var(--accent-dim);
+            transform: scale(1.05);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        
+        .urgency-bar {
+            background: linear-gradient(90deg, var(--danger), #ff6666);
+            color: white;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+        
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(36px, 8vw, 56px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: clamp(18px, 4vw, 22px);
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .subtitle strong {
+            color: var(--text);
+        }
+        
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 50px 0;
+        }
+        
+        @media (max-width: 600px) {
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+        
+        .stat-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-box:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.1);
+        }
+        
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stat-equals {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--accent);
+        }
+        
+        /* Problem Section */
+        .problem-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+        }
+        
+        .problem-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .problem-list {
+            list-style: none;
+        }
+        
+        .problem-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            font-size: 17px;
+            color: var(--text-muted);
+        }
+        
+        .problem-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .problem-list .icon {
+            color: var(--danger);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        /* Solution Section */
+        .solution-section {
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        .solution-section h2 {
+            font-size: clamp(28px, 5vw, 36px);
+            margin-bottom: 20px;
+        }
+        
+        .solution-section h2 span {
+            color: var(--accent);
+        }
+        
+        .solution-text {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            margin: 50px 0;
+        }
+        
+        .benefits-section h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .benefit-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            border-color: var(--accent);
+            background: rgba(0, 255, 136, 0.03);
+        }
+        
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .benefit-content h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+        
+        .benefit-content p {
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+        
+        /* Bonus Section */
+        .bonus-section {
+            background: linear-gradient(135deg, rgba(255, 170, 0, 0.1) 0%, rgba(255, 100, 0, 0.05) 100%);
+            border: 2px solid var(--warning);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bonus-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--warning);
+            color: var(--primary);
+            padding: 8px 50px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transform: rotate(45deg);
+        }
+        
+        .bonus-section h3 {
+            font-size: 24px;
+            color: var(--warning);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .bonus-section p {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+        
+        .bonus-value {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+        
+        /* Testimonials */
+        .testimonials-section {
+            margin: 60px 0;
+        }
+        
+        .testimonials-section h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .testimonial {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            font-size: 60px;
+            color: var(--accent);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            font-size: 17px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-left: 30px;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary);
+        }
+        
+        .testimonial-info strong {
+            display: block;
+            font-size: 16px;
+        }
+        
+        .testimonial-info span {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        
+        .testimonial-result {
+            display: inline-block;
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        
+        /* Author Section */
+        .author-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        @media (max-width: 600px) {
+            .author-section {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        .author-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        
+        .author-info h3 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .author-title {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .author-bio {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+        
+        .author-credentials {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 600px) {
+            .author-credentials {
+                justify-content: center;
+            }
+        }
+        
+        .credential {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        
+        .credential .icon {
+            color: var(--accent);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 200, 100, 0.05) 100%);
+            border: 2px solid var(--accent);
+            border-radius: 24px;
+            padding: 50px 40px;
+            margin: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0.3;
+            animation: rotateBg 20s linear infinite;
+        }
+        
+        @keyframes rotateBg {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-section h2 {
+            font-size: clamp(28px, 5vw, 36px);
+            margin-bottom: 15px;
+        }
+        
+        .cta-section .subtitle {
+            margin-bottom: 30px;
+        }
+        
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+        
+        .form-group input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 18px 30px;
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .submit-btn:hover {
+            background: var(--accent-dim);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .submit-btn .arrow {
+            transition: transform 0.3s;
+        }
+        
+        .submit-btn:hover .arrow {
+            transform: translateX(5px);
+        }
+        
+        .form-privacy {
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .form-privacy .icon {
+            color: var(--accent);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin: 60px 0;
+        }
+        
+        .faq-section h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+        }
+        
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px 25px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: rgba(0, 255, 136, 0.03);
+        }
+        
+        .faq-question .icon {
+            color: var(--accent);
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-question .icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-answer-content {
+            padding: 0 25px 20px;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+        
+        .footer p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        /* Social Proof Notification */
+        .social-proof {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            max-width: 320px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transform: translateX(-150%);
+            transition: transform 0.5s ease;
+            z-index: 100;
+        }
+        
+        .social-proof.visible {
+            transform: translateX(0);
+        }
+        
+        .social-proof-avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        
+        .social-proof-content {
+            font-size: 14px;
+        }
+        
+        .social-proof-content strong {
+            display: block;
+        }
+        
+        .social-proof-content span {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+        
+        .social-proof-close {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Loading State */
+        .submit-btn.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        
+        .submit-btn.loading::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--primary);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-left: 10px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Success State */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .form-success.visible {
+            display: block;
+            animation: slideUp 0.5s ease;
+        }
+        
+        .form-success .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .form-success h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .form-success p {
+            color: var(--text-muted);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 0 30px;
+            }
+            
+            .problem-section,
+            .bonus-section,
+            .author-section,
+            .cta-section {
+                padding: 30px 20px;
+            }
+            
+            .social-proof {
+                left: 10px;
+                right: 10px;
+                max-width: none;
+                bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    
+    <!-- Sticky Header -->
+    <div class="sticky-header" id="stickyHeader">
+        <div class="sticky-header-content">
+            <span class="sticky-header-text">📚 Guia Gratuito: 1.000 Fãs Verdadeiros</span>
+            <a href="#form" class="sticky-cta">Baixar Agora →</a>
+        </div>
+    </div>
+    
+    <!-- Social Proof Notification -->
+    <div class="social-proof" id="socialProof">
+        <button class="social-proof-close" onclick="closeSocialProof()">×</button>
+        <div class="social-proof-avatar" id="proofAvatar">M</div>
+        <div class="social-proof-content">
+            <strong id="proofName">Marcos R.</strong>
+            <span id="proofText">baixou o guia agora mesmo</span>
+        </div>
+    </div>
+    
+    <!-- Exit Intent Popup -->
+    <div class="exit-popup" id="exitPopup">
+        <div class="exit-popup-content">
+            <button class="exit-popup-close" onclick="closeExitPopup()">×</button>
+            <h3>⚡ Espera!</h3>
+            <p>Você está prestes a perder o guia que pode transformar seu negócio. É 100% gratuito.</p>
+            <a href="#form" class="submit-btn" onclick="closeExitPopup()" style="display: inline-flex; text-decoration: none;">
+                Quero o Guia Grátis <span class="arrow">→</span>
+            </a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="urgency-bar">
+                <span>🔥</span>
+                <span id="downloadCount">1.247</span> downloads esta semana
+                <span>•</span>
+                <span>Acesso liberado por tempo limitado</span>
+            </div>
+            
+            <div class="badge">
+                <span class="badge-dot"></span>
+                Novo Guia 2025
+            </div>
+            
+            <h1>Como Construir um Negócio de R$ 1 Milhão/Ano Com Apenas 1.000 Fãs Verdadeiros</h1>
+            
+            <p class="subtitle">
+                Enquanto todo mundo corre atrás de seguidores vazios, descubra o framework que <strong>empreendedores silenciosos</strong> usam para faturar alto com audiências pequenas.
+            </p>
+            
+            <a href="#form" class="submit-btn" style="display: inline-flex; text-decoration: none; max-width: 350px; margin: 0 auto;">
+                Baixar Guia Gratuito <span class="arrow">→</span>
+            </a>
+        </section>
+        
+        <!-- Stats -->
+        <section class="stats animate-on-scroll">
+            <div class="stat-box">
+                <span class="stat-number">1.000</span>
+                <span class="stat-label">Fãs Verdadeiros</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">×</span>
+                <span class="stat-label">R$ 1.000/ano</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">R$1M</span>
+                <span class="stat-label">Receita Anual</span>
+            </div>
+        </section>
+        
+        <!-- Problem Section -->
+        <section class="problem-section animate-on-scroll">
+            <h2>⚠️ O Problema Que Ninguém Fala</h2>
+            <ul class="problem-list">
+                <li>
+                    <span class="icon">✗</span>
+                    <span>Você posta todos os dias mas seus seguidores não compram nada</span>
+                </li>
+                <li>
+                    <span class="icon">✗</span>
+                    <span>Gasta horas criando conteúdo "educativo" que só gera likes vazios</span>
+                </li>
+                <li>
+                    <span class="icon">✗</span>
+                    <span>Vê gente com menos seguidores vendendo 10x mais que você</span>
+                </li>
+                <li>
+                    <span class="icon">✗</span>
+                    <span>Não entende por que seu DM está vazio mesmo com engajamento</span>
+                </li>
+                <li>
+                    <span class="icon">✗</span>
+                    <span>Acredita que precisa de "mais seguidores" para faturar mais</span>
+                </li>
+            </ul>
+        </section>
+        
+        <!-- Solution Section -->
+        <section class="solution-section animate-on-scroll">
+            <h2>A Solução: <span>Fãs Verdadeiros</span></h2>
+            <p class="solution-text">
+                Kevin Kelly já provou: você não precisa de milhões. Precisa de 1.000 pessoas dispostas a gastar R$ 1.000/ano com você. Este guia mostra exatamente como encontrar, atrair e monetizar esses fãs.
+            </p>
+        </section>
+        
+        <!-- Benefits Section -->
+        <section class="benefits-section animate-on-scroll">
+            <h2>📚 O Que Você Vai Aprender</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-content">
+                        <h3>A Matemática do Milhão</h3>
+                        <p>Cálculo exato para R$ 1M/ano com audiência pequena</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔍</div>
+                    <div class="benefit-content">
+                        <h3>Identificação de Fãs</h3>
+                        <p>Como reconhecer e atrair seus verdadeiros fãs do zero</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💰</div>
+                    <div class="benefit-content">
+                        <h3>5 Modelos de Monetização</h3>
+                        <p>Frameworks testados para audiências pequenas</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚀</div>
+                    <div class="benefit-content">
+                        <h3>Framework Lead → R$10k</h3>
+                        <p>Do primeiro contato até vendas de alto ticket</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📊</div>
+                    <div class="benefit-content">
+                        <h3>3 Cases Brasileiros</h3>
+                        <p>Histórias reais de quem aplicou e faturou</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <div class="benefit-content">
+                        <h3>Plano de 90 Dias</h3>
+                        <p>Ação imediata: o que fazer a partir de amanhã</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Bonus Section -->
+        <section class="bonus-section animate-on-scroll">
+            <div class="bonus-badge">Grátis</div>
+            <h3>🎁 BÔNUS EXCLUSIVO</h3>
+            <p><strong>Checklist do Fã Verdadeiro</strong> — Ferramenta prática para identificar quem são seus verdadeiros fãs na sua audiência atual.</p>
+            <p class="bonus-value">Valor: R$ 197 — Incluso gratuitamente</p>
+        </section>
+        
+        <!-- Testimonials -->
+        <section class="testimonials-section animate-on-scroll">
+            <h2>💬 Quem Já Aplicou</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">Passei 2 anos perseguindo números vazios. Quando apliquei o conceito dos Fãs Verdadeiros, troquei 50k seguidores por 800 pessoas engajadas. Resultado? 3x mais receita com 1/60 da audiência.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">M</div>
+                        <div class="testimonial-info">
+                            <strong>Marina S.</strong>
+                            <span>Consultora de Carreira</span>
+                            <div class="testimonial-result">+200% em receita</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">Eu achava que precisava de 100k seguidores pra viver de conteúdo. Hoje tenho 2.300 e faturo R$ 45k/mês com mentorias. O guia mudou minha visão completamente.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">P</div>
+                        <div class="testimonial-info">
+                            <strong>Pedro L.</strong>
+                            <span>Mentor de Negócios</span>
+                            <div class="testimonial-result">R$ 45k/mês</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">O framework de monetização para audiências pequenas é ouro puro. Implementei em 30 dias e já vi resultado no primeiro mês. Simples e direto ao ponto.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">C</div>
+                        <div class="testimonial-info">
+                            <strong>Carla M.</strong>
+                            <span>Designer & Infoprodutora</span>
+                            <div class="testimonial-result">ROI em 30 dias</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Author Section -->
+        <section class="author-section animate-on-scroll">
+            <div class="author-avatar">RT</div>
+            <div class="author-info">
+                <h3>Rodrigo Teixeira</h3>
+                <p class="author-title">CEO Lucro Disruptivo | Fundador Mente de Gringo™</p>
+                <p class="author-bio">
+                    15+ anos aplicando metodologias americanas de marketing no Brasil. Trabalhou com Six Pack Shortcuts gerando R$ 1MM/mês aos 22 anos. Parceiro de Russell Brunson e Mike Filsaime.
+                </p>
+                <div class="author-credentials">
+                    <div class="credential">
+                        <span class="icon">✓</span>
+                        <span>+200 empresas</span>
+                    </div>
+                    <div class="credential">
+                        <span class="icon">✓</span>
+                        <span>15 anos de mercado</span>
+                    </div>
+                    <div class="credential">
+                        <span class="icon">✓</span>
+                        <span>Metodologia americana</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta-section animate-on-scroll" id="form">
+            <div class="cta-content">
+                <h2>📥 Baixe o Guia Gratuitamente</h2>
+                <p class="subtitle">Acesso imediato. Sem pegadinhas. Sem cartão de crédito.</p>
+                
+                <div class="form-container">
+                    <form id="leadForm">
+                        <div class="form-group">
+                            <label for="name">Seu Nome</label>
+                            <input type="text" id="name" name="name" placeholder="Como posso te chamar?" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Seu Melhor Email</label>
+                            <input type="email" id="email" name="email" placeholder="email@exemplo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsapp">WhatsApp (opcional)</label>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(11) 99999-9999">
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            Quero Meu Guia Grátis <span class="arrow">→</span>
+                        </button>
+                        <p class="form-privacy">
+                            <span class="icon">🔒</span>
+                            Dados 100% seguros. Nunca compartilhamos. Zero spam.
+                        </p>
+                    </form>
+                    
+                    <div class="form-success" id="formSuccess">
+                        <div class="icon">✅</div>
+                        <h3>Acesso Liberado!</h3>
+                        <p>Você será redirecionado para o guia em <span id="countdown">3</span> segundos...</p>
+                        <a href="https://docs.google.com/document/d/1xADkkcZS08-hJYVtSQok34iE0cwvJGGD_OOhhpmTF04/edit?usp=sharing" class="submit-btn" style="margin-top: 20px; display: inline-flex; text-decoration: none;">
+                            Acessar Agora <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section class="faq-section animate-on-scroll">
+            <h2>❓ Perguntas Frequentes</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>O guia é realmente gratuito?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Sim, 100% gratuito. Sem pegadinhas, sem cartão de crédito, sem trial. É um material completo que criei para mostrar o poder dessa estratégia.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Funciona para qualquer nicho?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        O conceito de Fãs Verdadeiros funciona para qualquer pessoa que vende conhecimento, serviços ou produtos. Consultores, mentores, coaches, infoprodutores, prestadores de serviço, etc.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Preciso ter muitos seguidores?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Não! Esse é justamente o ponto. O guia mostra como faturar alto com audiências pequenas. Você pode começar do zero ou com a audiência que já tem.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Como recebo o material?</span>
+                    <span class="icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Imediatamente após o cadastro, você recebe o PDF completo no email informado. Se não chegar em 5 minutos, verifique sua caixa de spam.
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2025 Lucro Disruptivo. Todos os direitos reservados.</p>
+            <p style="margin-top: 10px;">
+                <a href="#">Política de Privacidade</a> • <a href="#">Termos de Uso</a>
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        // ========================================
+        // CONFIGURAÇÃO - Altere conforme necessário
+        // ========================================
+        const CONFIG = {
+            // URL do Google Apps Script (Web App)
+            // Cole aqui a URL gerada ao fazer deploy do Apps Script
+            googleScriptUrl: 'https://script.google.com/macros/s/AKfycbzH-vtATrOsna-wfKzKU_3Zo29q9xtFyhIvmGaObVxkh_eDvIKcwnV43KElJF5-1ZEIEA/exec',
+            
+            // URL de redirecionamento após cadastro (opcional)
+            redirectUrl: 'https://docs.google.com/document/d/1xADkkcZS08-hJYVtSQok34iE0cwvJGGD_OOhhpmTF04/edit?usp=sharing', // Ex: 'https://seusite.com/obrigado'
+            
+            // Habilitar/desabilitar features
+            enableExitPopup: true,
+            enableSocialProof: true,
+            enableStickyHeader: true,
+            
+            // Delay para notificações de social proof (em ms)
+            socialProofDelay: 8000,
+            socialProofInterval: 25000
+        };
+        
+        // ========================================
+        // SOCIAL PROOF DATA
+        // ========================================
+        const socialProofData = [
+            { name: 'Marcos R.', city: 'São Paulo', action: 'baixou o guia agora' },
+            { name: 'Ana C.', city: 'Rio de Janeiro', action: 'acabou de se cadastrar' },
+            { name: 'Felipe S.', city: 'Belo Horizonte', action: 'baixou o guia há 2 min' },
+            { name: 'Juliana M.', city: 'Curitiba', action: 'se cadastrou agora' },
+            { name: 'Ricardo L.', city: 'Porto Alegre', action: 'baixou o guia há 5 min' },
+            { name: 'Camila P.', city: 'Brasília', action: 'acabou de baixar' },
+            { name: 'Bruno A.', city: 'Salvador', action: 'se cadastrou há 3 min' },
+            { name: 'Fernanda T.', city: 'Fortaleza', action: 'baixou agora mesmo' }
+        ];
+        
+        // ========================================
+        // UTM & TRACKING
+        // ========================================
+        function getUTMParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                utm_source: params.get('utm_source') || '',
+                utm_medium: params.get('utm_medium') || '',
+                utm_campaign: params.get('utm_campaign') || '',
+                utm_term: params.get('utm_term') || '',
+                utm_content: params.get('utm_content') || '',
+                referrer: document.referrer || '',
+                landing_page: window.location.href
+            };
+        }
+        
+        function generateFingerprint() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.textBaseline = 'top';
+            ctx.font = '14px Arial';
+            ctx.fillText('fingerprint', 2, 2);
+            const canvasData = canvas.toDataURL();
+            
+            const data = [
+                navigator.userAgent,
+                navigator.language,
+                screen.width + 'x' + screen.height,
+                new Date().getTimezoneOffset(),
+                canvasData.slice(-50)
+            ].join('|');
+            
+            let hash = 0;
+            for (let i = 0; i < data.length; i++) {
+                const char = data.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return Math.abs(hash).toString(36);
+        }
+        
+        // ========================================
+        // FORM HANDLING - GOOGLE SHEETS
+        // ========================================
+        document.getElementById('leadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            const utmParams = getUTMParams();
+            
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim().toLowerCase(),
+                whatsapp: document.getElementById('whatsapp').value.trim() || '',
+                fingerprint: generateFingerprint(),
+                timestamp: new Date().toISOString(),
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                userAgent: navigator.userAgent,
+                screenResolution: screen.width + 'x' + screen.height,
+                utm_source: utmParams.utm_source,
+                utm_medium: utmParams.utm_medium,
+                utm_campaign: utmParams.utm_campaign,
+                utm_term: utmParams.utm_term,
+                utm_content: utmParams.utm_content,
+                referrer: utmParams.referrer,
+                landing_page: utmParams.landing_page,
+                lead_magnet: '1000_fas_verdadeiros'
+            };
+            
+            // Salvar no localStorage para tracking
+            localStorage.setItem('lead_data', JSON.stringify(formData));
+            localStorage.setItem('lead_email', formData.email);
+            localStorage.setItem('lead_name', formData.name);
+            
+            try {
+                // Enviar para Google Sheets via Apps Script
+                if (CONFIG.googleScriptUrl && !CONFIG.googleScriptUrl.includes('COLE_SUA_URL')) {
+                    
+                    // Método 1: fetch com no-cors (mais confiável)
+                    await fetch(CONFIG.googleScriptUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                } else {
+                    console.warn('URL do Google Apps Script não configurada');
+                }
+                
+                // Mostrar sucesso
+                document.getElementById('leadForm').style.display = 'none';
+                document.getElementById('formSuccess').classList.add('visible');
+                
+                // Disparar evento de conversão (para pixels/analytics)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'generate_lead', {
+                        'event_category': 'Lead',
+                        'event_label': '1000_fas_verdadeiros'
+                    });
+                }
+                
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'Lead', {
+                        content_name: '1000_fas_verdadeiros'
+                    });
+                }
+                
+                // Redirecionar com countdown
+                if (CONFIG.redirectUrl) {
+                    let seconds = 3;
+                    const countdownEl = document.getElementById('countdown');
+                    
+                    const countdownInterval = setInterval(() => {
+                        seconds--;
+                        if (countdownEl) countdownEl.textContent = seconds;
+                        
+                        if (seconds <= 0) {
+                            clearInterval(countdownInterval);
+                            window.location.href = CONFIG.redirectUrl;
+                        }
+                    }, 1000);
+                }
+                
+            } catch (error) {
+                console.error('Erro ao enviar lead:', error);
+                // Ainda mostra sucesso para UX (dados estão no localStorage)
+                document.getElementById('leadForm').style.display = 'none';
+                document.getElementById('formSuccess').classList.add('visible');
+            }
+            
+            submitBtn.classList.remove('loading');
+        });
+        
+        // ========================================
+        // STICKY HEADER
+        // ========================================
+        if (CONFIG.enableStickyHeader) {
+            const stickyHeader = document.getElementById('stickyHeader');
+            let lastScroll = 0;
+            
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll > 500) {
+                    stickyHeader.classList.add('visible');
+                } else {
+                    stickyHeader.classList.remove('visible');
+                }
+                
+                lastScroll = currentScroll;
+            });
+        }
+        
+        // ========================================
+        // SOCIAL PROOF NOTIFICATIONS
+        // ========================================
+        let socialProofIndex = 0;
+        let socialProofClosed = false;
+        
+        function showSocialProof() {
+            if (!CONFIG.enableSocialProof || socialProofClosed) return;
+            
+            const proof = socialProofData[socialProofIndex];
+            const element = document.getElementById('socialProof');
+            const avatar = document.getElementById('proofAvatar');
+            const name = document.getElementById('proofName');
+            const text = document.getElementById('proofText');
+            
+            avatar.textContent = proof.name.charAt(0);
+            name.textContent = proof.name + ' de ' + proof.city;
+            text.textContent = proof.action;
+            
+            element.classList.add('visible');
+            
+            setTimeout(() => {
+                element.classList.remove('visible');
+            }, 5000);
+            
+            socialProofIndex = (socialProofIndex + 1) % socialProofData.length;
+        }
+        
+        function closeSocialProof() {
+            document.getElementById('socialProof').classList.remove('visible');
+            socialProofClosed = true;
+        }
+        
+        // Iniciar social proof após delay
+        setTimeout(showSocialProof, CONFIG.socialProofDelay);
+        setInterval(showSocialProof, CONFIG.socialProofInterval);
+        
+        // ========================================
+        // EXIT INTENT POPUP
+        // ========================================
+        let exitPopupShown = false;
+        
+        if (CONFIG.enableExitPopup) {
+            document.addEventListener('mouseout', function(e) {
+                if (e.clientY < 10 && !exitPopupShown && !localStorage.getItem('exit_popup_shown')) {
+                    document.getElementById('exitPopup').classList.add('active');
+                    exitPopupShown = true;
+                    localStorage.setItem('exit_popup_shown', 'true');
+                }
+            });
+        }
+        
+        function closeExitPopup() {
+            document.getElementById('exitPopup').classList.remove('active');
+        }
+        
+        // Fechar popup com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeExitPopup();
+            }
+        });
+        
+        // ========================================
+        // FAQ TOGGLE
+        // ========================================
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Fechar todos
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            
+            // Abrir o clicado (se não estava ativo)
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+        
+        // ========================================
+        // SCROLL ANIMATIONS
+        // ========================================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // ========================================
+        // DOWNLOAD COUNTER (Fake but realistic)
+        // ========================================
+        function updateDownloadCount() {
+            const baseCount = 1247;
+            const randomAdd = Math.floor(Math.random() * 5);
+            const element = document.getElementById('downloadCount');
+            const currentCount = parseInt(element.textContent.replace('.', ''));
+            element.textContent = (currentCount + randomAdd).toLocaleString('pt-BR');
+        }
+        
+        // Atualizar contador a cada 30 segundos
+        setInterval(updateDownloadCount, 30000);
+        
+        // ========================================
+        // PHONE MASK
+        // ========================================
+        document.getElementById('whatsapp').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            
+            if (value.length > 0) {
+                value = '(' + value;
+            }
+            if (value.length > 3) {
+                value = value.slice(0, 3) + ') ' + value.slice(3);
+            }
+            if (value.length > 10) {
+                value = value.slice(0, 10) + '-' + value.slice(10);
+            }
+            
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>
